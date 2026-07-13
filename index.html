@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kemari Blakemore | Website UI Directions</title>
+  <meta name="description" content="Website UI directions by Kemari Blakemore, structured around product purchase, premium inquiry, and membership journeys.">
+  <style>
+    :root { --canvas:#080908; --ink:#141714; --muted:#64706a; --line:#d5dbd5; --paper:#f4f5f1; --white:#fff; --accent:#c65436; --leaf:#dfe7cf; --dark:#202a25; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--paper); font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.5; }
+    a { color:inherit; }
+    .wrap { width:min(1220px,calc(100% - 56px)); margin:0 auto; }
+    .site-header { background:var(--canvas); color:#f6f7f2; }
+    .nav { min-height:76px; display:flex; align-items:center; justify-content:space-between; gap:26px; }
+    .brand { font-size:15px; font-weight:850; letter-spacing:0; text-decoration:none; }
+    .nav-links { display:flex; align-items:center; gap:38px; font-size:13px; font-weight:800; text-transform:uppercase; }
+    .nav-links a { text-decoration:none; }
+    .nav-action { padding:10px 14px; border:1px solid rgba(255,255,255,.55); }
+    .hero { min-height:720px; padding:72px 0 34px; background:var(--canvas); color:#f6f7f2; }
+    .hero-inner { min-height:614px; display:flex; flex-direction:column; }
+    .eyebrow,.section-kicker { margin:0; color:var(--accent); font-size:12px; font-weight:850; letter-spacing:.08em; text-transform:uppercase; }
+    h1,h2,h3,p { margin-top:0; }
+    h1 { max-width:11ch; margin:72px 0 auto; font-size:144px; font-weight:900; line-height:.8; letter-spacing:0; }
+    .hero-bottom { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:36px; align-items:end; margin-top:54px; }
+    .hero-intro { max-width:530px; margin:0; color:#c8cec9; font-size:18px; }
+    .button { display:inline-flex; min-height:50px; align-items:center; justify-content:space-between; gap:28px; padding:0 17px; border:1px solid currentColor; color:inherit; font-size:13px; font-weight:850; text-decoration:none; text-transform:uppercase; }
+    .button span { color:var(--accent); font-size:22px; line-height:1; }
+    .hero-index { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); margin-top:48px; border-top:1px solid rgba(255,255,255,.35); border-bottom:1px solid rgba(255,255,255,.35); }
+    .hero-index a { display:flex; align-items:center; gap:12px; min-height:58px; padding:0 14px; border-right:1px solid rgba(255,255,255,.35); color:#f6f7f2; font-size:13px; font-weight:800; text-decoration:none; text-transform:uppercase; }
+    .hero-index a:last-child { border-right:0; }
+    .hero-index span { color:var(--accent); }
+    .position { padding:110px 0 118px; background:var(--paper); }
+    .position-grid { display:grid; grid-template-columns:minmax(0,.8fr) minmax(320px,1.2fr); gap:90px; align-items:end; }
+    .position h2,.work-head h2,.method h2,.contact h2 { margin:0; font-size:56px; font-weight:900; line-height:.9; letter-spacing:0; }
+    .position-copy { max-width:580px; }
+    .position-copy p { margin:0; color:var(--muted); font-size:20px; line-height:1.42; }
+    .position-copy strong { color:var(--ink); }
+    .routes { padding:96px 0 104px; border-top:1px solid var(--line); background:var(--white); }
+    .routes-head { display:flex; align-items:end; justify-content:space-between; gap:42px; margin-bottom:48px; }
+    .routes-head h2 { max-width:13ch; margin:0; font-size:56px; font-weight:900; line-height:.9; letter-spacing:0; }
+    .routes-head p { max-width:390px; margin:0; color:var(--muted); font-size:16px; }
+    .decision-routes { border-top:1px solid var(--ink); }
+    .decision-route { display:grid; grid-template-columns:76px minmax(240px,.7fr) minmax(320px,1.3fr); gap:32px; padding:30px 0 32px; border-bottom:1px solid var(--line); }
+    .route-number { color:var(--accent); font-size:13px; font-weight:850; }
+    .decision-route h3 { margin:0; font-size:30px; font-weight:900; line-height:.95; letter-spacing:0; }
+    .decision-route p { max-width:54ch; margin:0; color:var(--muted); font-size:16px; }
+    .work { padding:88px 0 0; background:var(--canvas); color:#f6f7f2; }
+    .work-head { display:flex; align-items:end; justify-content:space-between; gap:36px; padding-bottom:48px; }
+    .work-head h2 { max-width:11ch; }
+    .work-head p { max-width:360px; margin:0; color:#b9c1ba; font-size:16px; }
+    .project-grid { border-top:1px solid rgba(255,255,255,.35); }
+    .project-row { display:grid; grid-template-columns:70px minmax(260px,.85fr) minmax(270px,1.15fr); gap:36px; align-items:center; min-height:408px; padding:28px 0; border-bottom:1px solid rgba(255,255,255,.35); color:#f6f7f2; text-decoration:none; }
+    .project-number { align-self:start; color:var(--accent); font-size:14px; font-weight:850; }
+    .project-copy { align-self:stretch; display:flex; flex-direction:column; justify-content:space-between; gap:30px; }
+    .project-type { margin:0; color:#aeb8b0; font-size:12px; font-weight:850; letter-spacing:.07em; text-transform:uppercase; }
+    .project-copy h3 { margin:10px 0 12px; font-size:50px; font-weight:900; line-height:.88; letter-spacing:0; }
+    .project-copy p { max-width:28ch; margin:0; color:#c7cec8; font-size:16px; }
+    .project-path { display:flex; align-items:center; justify-content:space-between; gap:18px; padding-top:17px; border-top:1px solid rgba(255,255,255,.35); font-size:13px; font-weight:850; text-transform:uppercase; }
+    .project-path span { color:var(--accent); font-size:22px; line-height:1; }
+    .project-row figure { height:350px; margin:0; overflow:hidden; }
+    .project-row img { width:100%; height:100%; display:block; object-fit:cover; transition:transform .35s ease; }
+    .project-row:hover img { transform:scale(1.035); }
+    .method { padding:104px 0 108px; background:var(--white); }
+    .method-grid { display:grid; grid-template-columns:minmax(0,.8fr) minmax(360px,1.2fr); gap:94px; }
+    .method h2 { max-width:9ch; }
+    .steps { margin:0; padding:0; list-style:none; border-top:1px solid var(--ink); }
+    .steps li { display:grid; grid-template-columns:64px 1fr; gap:16px; padding:23px 0; border-bottom:1px solid var(--line); }
+    .steps span { color:var(--accent); font-size:13px; font-weight:850; }
+    .steps strong { display:block; margin-bottom:5px; font-size:18px; }
+    .steps p { margin:0; color:var(--muted); font-size:15px; }
+    .contact { padding:102px 0; background:var(--leaf); }
+    .contact-inner { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:50px; align-items:end; }
+    .contact h2 { max-width:13ch; }
+    .contact p { max-width:490px; margin:22px 0 0; color:#435148; font-size:17px; }
+    .contact-side { display:grid; gap:14px; min-width:250px; }
+    .contact .button { background:var(--ink); border-color:var(--ink); color:#fff; }
+    .contact-link { padding-bottom:13px; border-bottom:1px solid rgba(20,23,20,.25); font-size:16px; font-weight:800; text-decoration:none; }
+    .contact-link span { display:block; margin-bottom:5px; color:#526258; font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
+    footer { padding:26px 0 38px; border-top:1px solid var(--line); background:var(--paper); color:var(--muted); font-size:13px; }
+    .footer-inner { display:flex; justify-content:space-between; gap:24px; }
+    .honesty { max-width:620px; margin:0; }
+    @media (max-width:980px) { h1 { font-size:106px; } .position-grid,.method-grid { gap:52px; } .project-row { grid-template-columns:54px minmax(220px,.8fr) minmax(240px,1.1fr); gap:24px; } .position h2,.routes-head h2,.work-head h2,.method h2,.contact h2 { font-size:48px; } .decision-route { grid-template-columns:58px minmax(200px,.75fr) minmax(280px,1.25fr); gap:22px; } }
+    @media (max-width:760px) { .wrap { width:min(100% - 32px,1220px); } .nav { min-height:66px; } .nav-links { gap:16px; font-size:11px; } .nav-links a:not(.nav-action) { display:none; } .hero { min-height:650px; padding:48px 0 24px; } .hero-inner { min-height:578px; } h1 { margin-top:56px; font-size:68px; line-height:.83; } .hero-bottom { grid-template-columns:1fr; gap:24px; margin-top:40px; } .hero-intro { font-size:16px; } .hero-bottom .button { width:100%; } .hero-index { margin-top:32px; } .hero-index a { min-height:54px; padding:0 8px; font-size:11px; } .position,.routes,.method,.contact { padding:72px 0; } .position-grid,.method-grid { grid-template-columns:1fr; gap:38px; } .position h2,.routes-head h2,.work-head h2,.method h2,.contact h2 { font-size:42px; } .position-copy p { font-size:18px; } .routes-head { display:block; margin-bottom:34px; } .routes-head p { margin-top:20px; } .decision-route { grid-template-columns:42px 1fr; gap:16px; padding:23px 0; } .decision-route p { grid-column:2; font-size:15px; } .work { padding-top:66px; } .work-head { display:block; padding-bottom:38px; } .work-head p { margin-top:23px; } .project-row { grid-template-columns:46px 1fr; gap:18px; min-height:0; padding:24px 0; } .project-copy { gap:24px; } .project-copy h3 { font-size:44px; } .project-row figure { grid-column:1 / -1; grid-row:2; height:min(92vw,440px); } .method h2 { max-width:12ch; } .contact-inner { grid-template-columns:1fr; } .contact-side { min-width:0; } .contact .button { width:100%; } .footer-inner { display:block; } .honesty { margin-top:12px; } }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a class="brand" href="./">Kemari Blakemore</a>
+      <nav class="nav-links" aria-label="Primary navigation"><a href="#directions">Cases</a><a href="#method">Method</a><a class="nav-action" href="./ui-audit/">UI audit</a></nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero" id="top">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">Website UI Designer</p>
+        <h1>YOUR NEXT WEBSITE MOVE, MADE CLEAR.</h1>
+        <div class="hero-bottom"><p class="hero-intro">Website directions, built around the decision that pays. I turn a first impression into a purchase, a qualified inquiry, or a reason to return.</p><a class="button" href="./ui-audit/">View a sample UI audit <span aria-hidden="true">&rarr;</span></a></div>
+        <nav class="hero-index" aria-label="Commercial paths"><a href="#purchase"><span>01</span> Purchase</a><a href="#inquiry"><span>02</span> Inquiry</a><a href="#return"><span>03</span> Return</a></nav>
+      </div>
+    </section>
+
+    <section class="position" aria-labelledby="position-title">
+      <div class="wrap position-grid"><div><p class="section-kicker">The commercial brief</p><h2 id="position-title">A website needs a job.</h2></div><div class="position-copy"><p><strong>Visual quality earns attention.</strong> The page hierarchy, proof, and conversion route decide what happens next. Each direction below is built around one clear business outcome before the visual system is designed.</p></div></div>
+    </section>
+
+    <section class="routes" aria-labelledby="routes-title">
+      <div class="wrap"><div class="routes-head"><div><p class="section-kicker">(01) Commercial paths</p><h2 id="routes-title">Choose the decision your site needs to support.</h2></div><p>These are not industry categories. They are the moments where a visitor either progresses, hesitates, or leaves.</p></div>
+        <div class="decision-routes">
+          <article class="decision-route"><span class="route-number">01</span><h3>Buy with confidence</h3><p>For considered products. The interface has to make value tangible, reduce selection uncertainty, and keep the route from discovery to bag clear.</p></article>
+          <article class="decision-route"><span class="route-number">02</span><h3>Enquire with intent</h3><p>For premium services and complex offers. The website needs to build enough understanding and trust that the right prospect is ready to start a conversation.</p></article>
+          <article class="decision-route"><span class="route-number">03</span><h3>Return with a reason</h3><p>For hospitality, memberships, and recurring services. The design connects programme, experience, and practical next steps so visitors have a reason to come back.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="work" id="directions" aria-labelledby="directions-title">
+      <div class="wrap"><div class="work-head"><div><p class="section-kicker">(01) Website directions</p><h2 id="directions-title">Three paths to a useful website.</h2></div><p>Each case is independent concept work. The interface, content hierarchy, and interaction model are designed to make a specific customer decision easier.</p></div>
+        <div class="project-grid" aria-label="Concept UI Cases">
+          <a class="project-row" id="inquiry" href="./nocturne/"><span class="project-number">01</span><div class="project-copy"><div><p class="project-type">Objects and interiors</p><h3>Nocturne</h3><p>Win a higher-value inquiry with material proof, collection context, and a private appointment route.</p></div><div class="project-path">Inquiry path: material story to private appointment <span aria-hidden="true">&rarr;</span></div></div><figure><img src="./assets/nocturne-hero.webp" alt="Amber glass object on a stone plinth" loading="lazy" decoding="async"></figure></a>
+          <a class="project-row" id="purchase" href="./signal/"><span class="project-number">02</span><div class="project-copy"><div><p class="project-type">Fragrance and ritual</p><h3>Velour</h3><p>Sell a considered product by making scent, concentration, and product selection easy to understand.</p></div><div class="project-path">Purchase path: discovery to bag <span aria-hidden="true">&rarr;</span></div></div><figure><img src="./assets/velour-perfume.webp" alt="Velour fragrance bottle on burgundy silk" fetchpriority="high" decoding="async"></figure></a>
+          <a class="project-row" id="return" href="./kinfolk/"><span class="project-number">03</span><div class="project-copy"><div><p class="project-type">Hospitality and lifestyle</p><h3>Kinfolk</h3><p>Build a reason to return by moving from programme discovery to booking and membership.</p></div><div class="project-path">Return path: programme to membership <span aria-hidden="true">&rarr;</span></div></div><figure><img src="./assets/kinfolk-hero.webp" alt="Colourful paper and cord composition" loading="lazy" decoding="async"></figure></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="method" id="method" aria-labelledby="method-title">
+      <div class="wrap method-grid"><div><p class="section-kicker">(02) Method</p><h2 id="method-title">Clarity before visual polish.</h2></div><ol class="steps"><li><span>01</span><div><strong>Diagnose the customer decision</strong><p>Identify what a visitor needs to understand, trust, and do before the next business action.</p></div></li><li><span>02</span><div><strong>Shape the page hierarchy</strong><p>Put offer, proof, product or service detail, and the primary conversion route in a deliberate order.</p></div></li><li><span>03</span><div><strong>Design the interface system</strong><p>Build the visual language and responsive components that carry the direction through the full website.</p></div></li></ol></div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-inner"><div><p class="section-kicker">(03) Next step</p><h2>See what is getting in the way of your current website.</h2><p>Start with a sample UI audit to see the level of diagnosis and visual direction before discussing a redesign.</p></div><div class="contact-side"><a class="button" href="./ui-audit/">View sample UI audit <span aria-hidden="true">&rarr;</span></a><a class="contact-link" href="mailto:kemariblakemore734@gmail.com"><span>Email Kemari</span>kemariblakemore734@gmail.com</a><a class="contact-link" href="https://wa.me/8618025545090"><span>WhatsApp</span>+86 180 2554 5090</a></div></div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><span>Kemari Blakemore | Website UI Designer</span><p class="honesty">Independent concept work. Not commissioned client work or performance claims.</p></div></footer>
+</body>
+</html>
