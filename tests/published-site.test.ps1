@@ -227,6 +227,17 @@ Assert-Contains $caseCss 'background-attachment:scroll' 'scrolling page backgrou
 Assert-NotContains $caseCss 'background-attachment:fixed' 'fixed viewport background layer'
 Assert-Contains $caseCss 'radial-gradient' 'ambient green lighting layer'
 Assert-Contains $caseCss '.choice-preview' 'clickable choice image previews'
+Assert-Contains $caseCss '.rail-brand small{display:block;margin-top:6px;color:var(--case-muted);font-size:11px' 'readable rail brand detail'
+Assert-Contains $caseCss '.rail-social span{color:var(--case-muted);font-size:12px' 'readable rail social label'
+Assert-Contains $caseCss '.rail-scroll{writing-mode:vertical-rl;color:var(--case-muted);font-size:12px' 'readable rail scroll label'
+Assert-Contains $caseCss '.eyebrow{margin:0;color:var(--case-accent);font-size:13px' 'readable eyebrow label'
+Assert-Contains $caseCss '.feature-icons span{display:block;margin-top:14px;color:var(--case-muted);font-size:13px' 'readable feature label'
+Assert-Contains $caseCss '.category-choice small{display:block;color:var(--case-accent);font-size:13px' 'readable choice number'
+Assert-Contains $caseCss '.category-choice span{display:block;margin-top:10px;color:var(--case-muted);font-size:13px' 'readable choice description'
+Assert-Contains $caseCss '.service-page{position:absolute;top:28px;right:32px;color:var(--case-muted);font-size:13px' 'readable service page counter'
+Assert-Contains $caseCss '.process-step small{display:block;color:var(--case-accent);font-size:13px' 'readable process number'
+Assert-Contains $caseCss '.service-status{position:absolute;right:44px;bottom:22px;max-width:250px;margin:0;color:var(--case-muted);font-size:13px' 'readable process status'
+Assert-Contains $caseCss '.footer-meta{display:grid;grid-template-columns:1.2fr .9fr 1.25fr auto;gap:18px;align-items:end;width:min(980px,calc(100% - 11vw));margin:52px auto 0;padding-top:22px;border-top:1px solid var(--case-line);color:var(--case-muted);font-size:13px' 'readable footer metadata'
 
 $workflow = Get-ChildItem -Path (Split-Path -Parent $siteRoot) -File -Filter '41-*.md' | Select-Object -First 1
 if (-not $workflow) {
