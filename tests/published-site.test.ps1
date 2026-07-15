@@ -18,6 +18,19 @@ function Assert-NotContains {
   }
 }
 
+function Assert-UniqueImageSources {
+  param([string]$Content, [string]$Label)
+
+  $sources = [regex]::Matches($Content, '<img\b[^>]*\bsrc="([^"]+)"') | ForEach-Object { $_.Groups[1].Value }
+  if ($sources.Count -lt 7) {
+    throw "${Label} must include seven image placements."
+  }
+
+  if (($sources | Select-Object -Unique).Count -ne $sources.Count) {
+    throw "${Label} repeats a material image instead of using distinct artwork."
+  }
+}
+
 $requiredFiles = @(
   'index.html',
   'nadwa\\index.html',
@@ -60,6 +73,7 @@ Assert-Contains $nadwa 'category-showcase' 'tableware reference case composition
 Assert-Contains $nadwa 'service-canvas' 'tableware reference service composition'
 Assert-Contains $nadwa 'micro-footer' 'tableware reference footer composition'
 Assert-Contains $nadwa 'nadwa-detail-graded.webp' 'tableware graded detail image'
+Assert-UniqueImageSources $nadwa 'tableware case'
 
 $nocturne = Get-Content -Raw (Join-Path $siteRoot 'nocturne\\index.html')
 Assert-Contains $nocturne 'Find your scent' 'fragrance discovery route'
@@ -74,6 +88,7 @@ Assert-Contains $nocturne 'category-showcase' 'fragrance reference case composit
 Assert-Contains $nocturne 'service-canvas' 'fragrance reference service composition'
 Assert-Contains $nocturne 'micro-footer' 'fragrance reference footer composition'
 Assert-Contains $nocturne 'nocturne-detail-graded.webp' 'fragrance graded detail image'
+Assert-UniqueImageSources $nocturne 'fragrance case'
 
 $roastery = Get-Content -Raw (Join-Path $siteRoot 'roastery\\index.html')
 Assert-Contains $roastery 'Choose your roast profile' 'coffee selection route'
@@ -88,6 +103,7 @@ Assert-Contains $roastery 'category-showcase' 'coffee reference case composition
 Assert-Contains $roastery 'service-canvas' 'coffee reference service composition'
 Assert-Contains $roastery 'micro-footer' 'coffee reference footer composition'
 Assert-Contains $roastery 'roastery-detail-graded.webp' 'coffee graded detail image'
+Assert-UniqueImageSources $roastery 'coffee case'
 
 $majlis = Get-Content -Raw (Join-Path $siteRoot 'majlis\\index.html')
 Assert-Contains $majlis 'Reserve a table' 'restaurant reservation route'
@@ -102,6 +118,7 @@ Assert-Contains $majlis 'category-showcase' 'restaurant reference case compositi
 Assert-Contains $majlis 'service-canvas' 'restaurant reference service composition'
 Assert-Contains $majlis 'micro-footer' 'restaurant reference footer composition'
 Assert-Contains $majlis 'majlis-detail-graded.webp' 'restaurant graded detail image'
+Assert-UniqueImageSources $majlis 'restaurant case'
 
 $audit = Get-Content -Raw (Join-Path $siteRoot 'ui-audit\\index.html')
 Assert-Contains $audit 'Website UI Audit | Kemari Blakemore' 'audit title'
@@ -136,6 +153,18 @@ foreach ($assetName in $gradedAssets) {
   }
 }
 
+$sectorMomentAssets = @(
+  'nadwa-moments-01.webp', 'nadwa-moments-02.webp', 'nadwa-moments-03.webp', 'nadwa-moments-04.webp',
+  'nocturne-moments-01.webp', 'nocturne-moments-02.webp', 'nocturne-moments-03.webp', 'nocturne-moments-04.webp',
+  'roastery-moments-01.webp', 'roastery-moments-02.webp', 'roastery-moments-03.webp', 'roastery-moments-04.webp',
+  'majlis-moments-01.webp', 'majlis-moments-02.webp', 'majlis-moments-03.webp', 'majlis-moments-04.webp'
+)
+foreach ($assetName in $sectorMomentAssets) {
+  if (-not (Test-Path (Join-Path $siteRoot "assets\\$assetName"))) {
+    throw "Missing sector-specific editorial material: $assetName"
+  }
+}
+
 $editorialBackground = Join-Path $siteRoot 'assets\\editorial-emerald-background.webp'
 if (-not (Test-Path $editorialBackground)) {
   throw 'Missing full-page editorial background asset.'
@@ -143,7 +172,8 @@ if (-not (Test-Path $editorialBackground)) {
 
 $caseCss = Get-Content -Raw (Join-Path $siteRoot 'assets\\case-editorial.css')
 Assert-Contains $caseCss 'editorial-emerald-background.webp' 'reference-style full-page background texture'
-Assert-Contains $caseCss 'background-attachment:fixed' 'persistent background layer'
+Assert-Contains $caseCss 'background-attachment:scroll' 'scrolling page background layer'
+Assert-NotContains $caseCss 'background-attachment:fixed' 'fixed viewport background layer'
 Assert-Contains $caseCss 'radial-gradient' 'ambient green lighting layer'
 
 $workflow = Get-ChildItem -Path (Split-Path -Parent $siteRoot) -File -Filter '41-*.md' | Select-Object -First 1
