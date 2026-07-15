@@ -54,6 +54,12 @@ Assert-NotContains $nadwa 'href="../"' 'tableware route back to overview'
 Assert-Contains $nadwa 'case-rail' 'tableware editorial rail'
 Assert-Contains $nadwa 'editorial-grid' 'tableware grid layout'
 Assert-Contains $nadwa 'nadwa-graded.webp' 'tableware graded image'
+Assert-Contains $nadwa 'reference-hero' 'tableware reference hero composition'
+Assert-Contains $nadwa 'brand-feature' 'tableware reference brand composition'
+Assert-Contains $nadwa 'category-showcase' 'tableware reference case composition'
+Assert-Contains $nadwa 'service-canvas' 'tableware reference service composition'
+Assert-Contains $nadwa 'micro-footer' 'tableware reference footer composition'
+Assert-Contains $nadwa 'nadwa-detail-graded.webp' 'tableware graded detail image'
 
 $nocturne = Get-Content -Raw (Join-Path $siteRoot 'nocturne\\index.html')
 Assert-Contains $nocturne 'Find your scent' 'fragrance discovery route'
@@ -62,6 +68,12 @@ Assert-NotContains $nocturne 'href="../"' 'fragrance route back to overview'
 Assert-Contains $nocturne 'case-rail' 'fragrance editorial rail'
 Assert-Contains $nocturne 'editorial-grid' 'fragrance grid layout'
 Assert-Contains $nocturne 'nocturne-graded.webp' 'fragrance graded image'
+Assert-Contains $nocturne 'reference-hero' 'fragrance reference hero composition'
+Assert-Contains $nocturne 'brand-feature' 'fragrance reference brand composition'
+Assert-Contains $nocturne 'category-showcase' 'fragrance reference case composition'
+Assert-Contains $nocturne 'service-canvas' 'fragrance reference service composition'
+Assert-Contains $nocturne 'micro-footer' 'fragrance reference footer composition'
+Assert-Contains $nocturne 'nocturne-detail-graded.webp' 'fragrance graded detail image'
 
 $roastery = Get-Content -Raw (Join-Path $siteRoot 'roastery\\index.html')
 Assert-Contains $roastery 'Choose your roast profile' 'coffee selection route'
@@ -70,6 +82,12 @@ Assert-NotContains $roastery 'href="../"' 'coffee route back to overview'
 Assert-Contains $roastery 'case-rail' 'coffee editorial rail'
 Assert-Contains $roastery 'editorial-grid' 'coffee grid layout'
 Assert-Contains $roastery 'roastery-graded.webp' 'coffee graded image'
+Assert-Contains $roastery 'reference-hero' 'coffee reference hero composition'
+Assert-Contains $roastery 'brand-feature' 'coffee reference brand composition'
+Assert-Contains $roastery 'category-showcase' 'coffee reference case composition'
+Assert-Contains $roastery 'service-canvas' 'coffee reference service composition'
+Assert-Contains $roastery 'micro-footer' 'coffee reference footer composition'
+Assert-Contains $roastery 'roastery-detail-graded.webp' 'coffee graded detail image'
 
 $majlis = Get-Content -Raw (Join-Path $siteRoot 'majlis\\index.html')
 Assert-Contains $majlis 'Reserve a table' 'restaurant reservation route'
@@ -78,6 +96,12 @@ Assert-NotContains $majlis 'href="../"' 'restaurant route back to overview'
 Assert-Contains $majlis 'case-rail' 'restaurant editorial rail'
 Assert-Contains $majlis 'editorial-grid' 'restaurant grid layout'
 Assert-Contains $majlis 'majlis-graded.webp' 'restaurant graded image'
+Assert-Contains $majlis 'reference-hero' 'restaurant reference hero composition'
+Assert-Contains $majlis 'brand-feature' 'restaurant reference brand composition'
+Assert-Contains $majlis 'category-showcase' 'restaurant reference case composition'
+Assert-Contains $majlis 'service-canvas' 'restaurant reference service composition'
+Assert-Contains $majlis 'micro-footer' 'restaurant reference footer composition'
+Assert-Contains $majlis 'majlis-detail-graded.webp' 'restaurant graded detail image'
 
 $audit = Get-Content -Raw (Join-Path $siteRoot 'ui-audit\\index.html')
 Assert-Contains $audit 'Website UI Audit | Kemari Blakemore' 'audit title'
@@ -105,7 +129,7 @@ foreach ($asset in $webpAssets) {
   }
 }
 
-$gradedAssets = @('nadwa-graded.webp', 'nocturne-graded.webp', 'roastery-graded.webp', 'majlis-graded.webp')
+$gradedAssets = @('nadwa-graded.webp', 'nocturne-graded.webp', 'roastery-graded.webp', 'majlis-graded.webp', 'nadwa-detail-graded.webp', 'nocturne-detail-graded.webp', 'roastery-detail-graded.webp', 'majlis-detail-graded.webp')
 foreach ($assetName in $gradedAssets) {
   if (-not (Test-Path (Join-Path $siteRoot "assets\\$assetName"))) {
     throw "Missing editorially graded asset: $assetName"
