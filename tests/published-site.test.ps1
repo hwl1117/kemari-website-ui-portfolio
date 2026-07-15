@@ -36,28 +36,36 @@ foreach ($relativePath in $requiredFiles) {
 
 $entry = Get-Content -Raw (Join-Path $siteRoot 'index.html')
 Assert-Contains $entry 'Kemari Blakemore | Website UI Directions' 'portfolio title'
-Assert-Contains $entry './ui-audit/' 'root-relative UI audit route'
-Assert-Contains $entry 'High-end Arabic tableware' 'tableware sector'
-Assert-Contains $entry 'Fine fragrance' 'fragrance sector'
-Assert-Contains $entry 'Specialty coffee' 'coffee sector'
-Assert-Contains $entry 'Restaurant' 'restaurant sector'
+Assert-Contains $entry 'Private case studies are shared individually.' 'private case-study positioning'
+Assert-NotContains $entry 'High-end Arabic tableware' 'tableware sector on public root'
+Assert-NotContains $entry 'Fine fragrance' 'fragrance sector on public root'
+Assert-NotContains $entry 'Specialty coffee' 'coffee sector on public root'
+Assert-NotContains $entry 'Restaurant' 'restaurant sector on public root'
+Assert-NotContains $entry './nadwa/' 'tableware case link on public root'
+Assert-NotContains $entry './nocturne/' 'fragrance case link on public root'
+Assert-NotContains $entry './roastery/' 'coffee case link on public root'
+Assert-NotContains $entry './majlis/' 'restaurant case link on public root'
 Assert-NotContains $entry 'hwl1117.github.io/kemari-sample-audit' 'legacy project link'
 
 $nadwa = Get-Content -Raw (Join-Path $siteRoot 'nadwa\\index.html')
 Assert-Contains $nadwa 'Corporate and wedding gifting' 'tableware gifting route'
 Assert-Contains $nadwa 'Build a table' 'tableware merchandising action'
+Assert-NotContains $nadwa 'href="../"' 'tableware route back to overview'
 
 $nocturne = Get-Content -Raw (Join-Path $siteRoot 'nocturne\\index.html')
 Assert-Contains $nocturne 'Find your scent' 'fragrance discovery route'
 Assert-Contains $nocturne 'Discovery set' 'fragrance sample route'
+Assert-NotContains $nocturne 'href="../"' 'fragrance route back to overview'
 
 $roastery = Get-Content -Raw (Join-Path $siteRoot 'roastery\\index.html')
 Assert-Contains $roastery 'Choose your roast profile' 'coffee selection route'
 Assert-Contains $roastery 'Wholesale coffee' 'coffee wholesale route'
+Assert-NotContains $roastery 'href="../"' 'coffee route back to overview'
 
 $majlis = Get-Content -Raw (Join-Path $siteRoot 'majlis\\index.html')
 Assert-Contains $majlis 'Reserve a table' 'restaurant reservation route'
 Assert-Contains $majlis 'Private dining' 'restaurant events route'
+Assert-NotContains $majlis 'href="../"' 'restaurant route back to overview'
 
 $audit = Get-Content -Raw (Join-Path $siteRoot 'ui-audit\\index.html')
 Assert-Contains $audit 'Website UI Audit | Kemari Blakemore' 'audit title'
@@ -94,5 +102,10 @@ $workflowText = Get-Content -Raw $workflow.FullName
 Assert-Contains $workflowText 'WhatsApp Business' 'WhatsApp channel policy'
 Assert-Contains $workflowText 'one first-touch channel' 'channel deduplication policy'
 Assert-Contains $workflowText 'explicit approval' 'outbound approval policy'
+Assert-Contains $workflowText 'https://hwl1117.github.io/kemari-website-ui-portfolio/nadwa/' 'tableware case URL'
+Assert-Contains $workflowText 'https://hwl1117.github.io/kemari-website-ui-portfolio/nocturne/' 'fragrance case URL'
+Assert-Contains $workflowText 'https://hwl1117.github.io/kemari-website-ui-portfolio/roastery/' 'coffee case URL'
+Assert-Contains $workflowText 'https://hwl1117.github.io/kemari-website-ui-portfolio/majlis/' 'restaurant case URL'
+Assert-Contains $workflowText 'Never send the portfolio root URL' 'sector-link rule'
 
 Write-Host "Published-site checks passed for $($requiredFiles.Count) pages."
