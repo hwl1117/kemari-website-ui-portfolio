@@ -52,7 +52,7 @@
 
     <section class="category-showcase editorial-grid" id="table-builder" aria-labelledby="nadwa-category-title">
       <div class="category-frame">
-        <figure class="category-media"><img src="../assets/nadwa-moments-01.webp" alt="Porcelain bowls and a brass serving tray arranged for Arabic hosting" loading="lazy"></figure>
+        <figure class="category-media"><img data-choice-media src="../assets/nadwa-choice-hosting.webp" alt="Nadwa hosting table with porcelain serveware and candles" loading="lazy"></figure>
         <div class="category-copy">
           <p class="eyebrow">Table builder</p>
           <h2 id="nadwa-category-title">A TABLE HAS A REASON.</h2>
@@ -60,9 +60,9 @@
         </div>
         <p class="category-output" aria-live="polite"><strong id="nadwa-output">Hosting table / AED 2,380</strong><span id="nadwa-copy">Eight settings, shared serveware and delivery context held in one purchase route.</span></p>
         <div class="category-choices" role="group" aria-label="Choose a table occasion">
-          <button class="category-choice" type="button" data-choice="Home table / AED 1,240" data-copy="Four place settings create a complete everyday beginning without a piece-by-piece decision." aria-pressed="false"><small>01 / HOME</small><b>HOME TABLE</b><span>One complete daily setting.</span></button>
-          <button class="category-choice" type="button" data-choice="Hosting table / AED 2,380" data-copy="Eight settings, shared serveware and delivery context held in one purchase route." aria-pressed="true"><small>02 / HOSTING</small><b>HOSTING TABLE</b><span>Prepared for a longer dinner.</span></button>
-          <button class="category-choice" type="button" data-choice="Wedding gift / AED 1,680" data-copy="A boxed setting, personal note and delivery timing turn a gift into a route with care." aria-pressed="false"><small>03 / GIFTING</small><b>WEDDING GIFT</b><span>One considered beginning.</span></button>
+          <button class="category-choice" type="button" data-choice="Home table / AED 1,240" data-copy="Four place settings create a complete everyday beginning without a piece-by-piece decision." data-image="../assets/nadwa-choice-home.webp" data-alt="Everyday Nadwa porcelain table for two with dates and linen" style="--choice-image:url('../assets/nadwa-choice-home.webp')" aria-pressed="false"><span class="choice-preview" aria-hidden="true"></span><small>01 / HOME</small><b>HOME TABLE</b><span>One complete daily setting.</span></button>
+          <button class="category-choice" type="button" data-choice="Hosting table / AED 2,380" data-copy="Eight settings, shared serveware and delivery context held in one purchase route." data-image="../assets/nadwa-choice-hosting.webp" data-alt="Nadwa hosting table with porcelain serveware and candles" style="--choice-image:url('../assets/nadwa-choice-hosting.webp')" aria-pressed="true"><span class="choice-preview" aria-hidden="true"></span><small>02 / HOSTING</small><b>HOSTING TABLE</b><span>Prepared for a longer dinner.</span></button>
+          <button class="category-choice" type="button" data-choice="Wedding gift / AED 1,680" data-copy="A boxed setting, personal note and delivery timing turn a gift into a route with care." data-image="../assets/nadwa-choice-gifting.webp" data-alt="Nadwa wedding gift box with porcelain and olive ribbon" style="--choice-image:url('../assets/nadwa-choice-gifting.webp')" aria-pressed="false"><span class="choice-preview" aria-hidden="true"></span><small>03 / GIFTING</small><b>WEDDING GIFT</b><span>One considered beginning.</span></button>
         </div>
       </div>
     </section>
@@ -104,9 +104,12 @@
     </footer>
   </main>
   <script>
+    const categoryImage=document.querySelector('[data-choice-media]');
     document.querySelectorAll('[data-choice]').forEach((button)=>button.addEventListener('click',()=>{
       document.querySelectorAll('[data-choice]').forEach((item)=>item.setAttribute('aria-pressed','false'));
       button.setAttribute('aria-pressed','true');
+      categoryImage.src=button.dataset.image;
+      categoryImage.alt=button.dataset.alt;
       document.querySelector('#nadwa-output').textContent=button.dataset.choice;
       document.querySelector('#nadwa-copy').textContent=button.dataset.copy;
     }));

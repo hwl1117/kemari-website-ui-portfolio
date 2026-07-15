@@ -52,7 +52,7 @@
 
     <section class="category-showcase editorial-grid" id="roast-profile" aria-labelledby="roastery-category-title">
       <div class="category-frame">
-        <figure class="category-media"><img src="../assets/roastery-moments-01.webp" alt="Roasted coffee beans and a brass scoop on green stone" loading="lazy"></figure>
+        <figure class="category-media"><img data-choice-media src="../assets/roastery-choice-sweet-round.webp" alt="Colombian daily cup with roasted beans and plum" loading="lazy"></figure>
         <div class="category-copy">
           <p class="eyebrow">Roast profile</p>
           <h2 id="roastery-category-title">CHOOSE THE CUP BEFORE THE COUNTRY.</h2>
@@ -60,9 +60,9 @@
         </div>
         <p class="category-output" aria-live="polite"><strong id="roastery-output">Sweet and round / Colombia</strong><span id="roastery-copy">Plum, caramel and cacao for a repeated daily cup across filter and milk.</span></p>
         <div class="category-choices" role="group" aria-label="Choose a roast profile">
-          <button class="category-choice" type="button" data-choice="Clean and bright / Kenya" data-copy="Blackcurrant, white florals and brown sugar, suggested for V60 and batch brew." aria-pressed="false"><small>01 / FILTER</small><b>CLEAN AND BRIGHT</b><span>For clarity and length.</span></button>
-          <button class="category-choice" type="button" data-choice="Sweet and round / Colombia" data-copy="Plum, caramel and cacao for a repeated daily cup across filter and milk." aria-pressed="true"><small>02 / DAILY</small><b>SWEET AND ROUND</b><span>For an easy repeat cup.</span></button>
-          <button class="category-choice" type="button" data-choice="Deep and structured / Brazil" data-copy="Dark chocolate, roasted almond and dried cherry, designed to hold up in espresso and milk." aria-pressed="false"><small>03 / ESPRESSO</small><b>DEEP AND STRUCTURED</b><span>For body and milk.</span></button>
+          <button class="category-choice" type="button" data-choice="Clean and bright / Kenya" data-copy="Blackcurrant, white florals and brown sugar, suggested for V60 and batch brew." data-image="../assets/roastery-choice-clean-bright.webp" data-alt="V60 filter coffee with florals and blackcurrants" style="--choice-image:url('../assets/roastery-choice-clean-bright.webp')" aria-pressed="false"><span class="choice-preview" aria-hidden="true"></span><small>01 / FILTER</small><b>CLEAN AND BRIGHT</b><span>For clarity and length.</span></button>
+          <button class="category-choice" type="button" data-choice="Sweet and round / Colombia" data-copy="Plum, caramel and cacao for a repeated daily cup across filter and milk." data-image="../assets/roastery-choice-sweet-round.webp" data-alt="Colombian daily cup with roasted beans and plum" style="--choice-image:url('../assets/roastery-choice-sweet-round.webp')" aria-pressed="true"><span class="choice-preview" aria-hidden="true"></span><small>02 / DAILY</small><b>SWEET AND ROUND</b><span>For an easy repeat cup.</span></button>
+          <button class="category-choice" type="button" data-choice="Deep and structured / Brazil" data-copy="Dark chocolate, roasted almond and dried cherry, designed to hold up in espresso and milk." data-image="../assets/roastery-choice-deep-structured.webp" data-alt="Dark espresso cup with chocolate and roasted almond" style="--choice-image:url('../assets/roastery-choice-deep-structured.webp')" aria-pressed="false"><span class="choice-preview" aria-hidden="true"></span><small>03 / ESPRESSO</small><b>DEEP AND STRUCTURED</b><span>For body and milk.</span></button>
         </div>
       </div>
     </section>
@@ -104,9 +104,12 @@
     </footer>
   </main>
   <script>
+    const categoryImage=document.querySelector('[data-choice-media]');
     document.querySelectorAll('[data-choice]').forEach((button)=>button.addEventListener('click',()=>{
       document.querySelectorAll('[data-choice]').forEach((item)=>item.setAttribute('aria-pressed','false'));
       button.setAttribute('aria-pressed','true');
+      categoryImage.src=button.dataset.image;
+      categoryImage.alt=button.dataset.alt;
       document.querySelector('#roastery-output').textContent=button.dataset.choice;
       document.querySelector('#roastery-copy').textContent=button.dataset.copy;
     }));

@@ -31,6 +31,41 @@ function Assert-UniqueImageSources {
   }
 }
 
+function Assert-ChoiceVisualSwitching {
+  param([string]$Content, [string]$Label)
+
+  $choiceButtons = [regex]::Matches($Content, '<button\b(?=[^>]*\bdata-choice=)[^>]*>')
+  if ($choiceButtons.Count -ne 3) {
+    throw "${Label} must include exactly three visual choices."
+  }
+
+  $choiceImages = @()
+  foreach ($button in $choiceButtons) {
+    $imageMatch = [regex]::Match($button.Value, '\bdata-image="([^"]+)"')
+    if (-not $imageMatch.Success) {
+      throw "${Label} choice is missing its image source."
+    }
+
+    if ($button.Value -notmatch '\bdata-alt="[^"]+"') {
+      throw "${Label} choice is missing descriptive alternative text."
+    }
+
+    if ($button.Value -notmatch 'style="--choice-image:url\(''[^'']+''\)"') {
+      throw "${Label} choice is missing its visual card preview."
+    }
+
+    $choiceImages += $imageMatch.Groups[1].Value
+  }
+
+  if (($choiceImages | Select-Object -Unique).Count -ne 3) {
+    throw "${Label} choices must use three distinct visuals."
+  }
+
+  Assert-Contains $Content 'data-choice-media' "${Label} category media hook"
+  Assert-Contains $Content 'categoryImage.src=button.dataset.image' "${Label} category image switch"
+  Assert-Contains $Content 'categoryImage.alt=button.dataset.alt' "${Label} category image description switch"
+}
+
 $requiredFiles = @(
   'index.html',
   'nadwa\\index.html',
@@ -74,6 +109,7 @@ Assert-Contains $nadwa 'service-canvas' 'tableware reference service composition
 Assert-Contains $nadwa 'micro-footer' 'tableware reference footer composition'
 Assert-Contains $nadwa 'nadwa-detail-graded.webp' 'tableware graded detail image'
 Assert-UniqueImageSources $nadwa 'tableware case'
+Assert-ChoiceVisualSwitching $nadwa 'tableware case'
 
 $nocturne = Get-Content -Raw (Join-Path $siteRoot 'nocturne\\index.html')
 Assert-Contains $nocturne 'Find your scent' 'fragrance discovery route'
@@ -89,6 +125,7 @@ Assert-Contains $nocturne 'service-canvas' 'fragrance reference service composit
 Assert-Contains $nocturne 'micro-footer' 'fragrance reference footer composition'
 Assert-Contains $nocturne 'nocturne-detail-graded.webp' 'fragrance graded detail image'
 Assert-UniqueImageSources $nocturne 'fragrance case'
+Assert-ChoiceVisualSwitching $nocturne 'fragrance case'
 
 $roastery = Get-Content -Raw (Join-Path $siteRoot 'roastery\\index.html')
 Assert-Contains $roastery 'Choose your roast profile' 'coffee selection route'
@@ -104,6 +141,7 @@ Assert-Contains $roastery 'service-canvas' 'coffee reference service composition
 Assert-Contains $roastery 'micro-footer' 'coffee reference footer composition'
 Assert-Contains $roastery 'roastery-detail-graded.webp' 'coffee graded detail image'
 Assert-UniqueImageSources $roastery 'coffee case'
+Assert-ChoiceVisualSwitching $roastery 'coffee case'
 
 $majlis = Get-Content -Raw (Join-Path $siteRoot 'majlis\\index.html')
 Assert-Contains $majlis 'Reserve a table' 'restaurant reservation route'
@@ -119,6 +157,7 @@ Assert-Contains $majlis 'service-canvas' 'restaurant reference service compositi
 Assert-Contains $majlis 'micro-footer' 'restaurant reference footer composition'
 Assert-Contains $majlis 'majlis-detail-graded.webp' 'restaurant graded detail image'
 Assert-UniqueImageSources $majlis 'restaurant case'
+Assert-ChoiceVisualSwitching $majlis 'restaurant case'
 
 $audit = Get-Content -Raw (Join-Path $siteRoot 'ui-audit\\index.html')
 Assert-Contains $audit 'Website UI Audit | Kemari Blakemore' 'audit title'
@@ -165,16 +204,29 @@ foreach ($assetName in $sectorMomentAssets) {
   }
 }
 
-$editorialBackground = Join-Path $siteRoot 'assets\\editorial-emerald-background.webp'
+$choiceVisualAssets = @(
+  'nadwa-choice-home.webp', 'nadwa-choice-hosting.webp', 'nadwa-choice-gifting.webp',
+  'nocturne-choice-after-rain.webp', 'nocturne-choice-late-light.webp', 'nocturne-choice-black-silk.webp',
+  'roastery-choice-clean-bright.webp', 'roastery-choice-sweet-round.webp', 'roastery-choice-deep-structured.webp',
+  'majlis-choice-early.webp', 'majlis-choice-dinner.webp', 'majlis-choice-late.webp'
+)
+foreach ($assetName in $choiceVisualAssets) {
+  if (-not (Test-Path (Join-Path $siteRoot "assets\\$assetName"))) {
+    throw "Missing clickable choice visual: $assetName"
+  }
+}
+
+$editorialBackground = Join-Path $siteRoot 'assets\\editorial-emerald-structured.webp'
 if (-not (Test-Path $editorialBackground)) {
-  throw 'Missing full-page editorial background asset.'
+  throw 'Missing sharp full-page editorial background asset.'
 }
 
 $caseCss = Get-Content -Raw (Join-Path $siteRoot 'assets\\case-editorial.css')
-Assert-Contains $caseCss 'editorial-emerald-background.webp' 'reference-style full-page background texture'
+Assert-Contains $caseCss 'editorial-emerald-structured.webp' 'sharp reference-style full-page background texture'
 Assert-Contains $caseCss 'background-attachment:scroll' 'scrolling page background layer'
 Assert-NotContains $caseCss 'background-attachment:fixed' 'fixed viewport background layer'
 Assert-Contains $caseCss 'radial-gradient' 'ambient green lighting layer'
+Assert-Contains $caseCss '.choice-preview' 'clickable choice image previews'
 
 $workflow = Get-ChildItem -Path (Split-Path -Parent $siteRoot) -File -Filter '41-*.md' | Select-Object -First 1
 if (-not $workflow) {

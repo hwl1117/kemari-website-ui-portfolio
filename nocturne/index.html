@@ -52,7 +52,7 @@
 
     <section class="category-showcase editorial-grid" id="scent-finder" aria-labelledby="nocturne-category-title">
       <div class="category-frame">
-        <figure class="category-media"><img src="../assets/nocturne-moments-01.webp" alt="A sculptural fragrance bottle in deep emerald shadow" loading="lazy"></figure>
+        <figure class="category-media"><img data-choice-media src="../assets/nocturne-choice-late-light.webp" alt="Amber Nocturne fragrance bottle with pear and saffron" loading="lazy"></figure>
         <div class="category-copy">
           <p class="eyebrow">Scent finder</p>
           <h2 id="nocturne-category-title">CHOOSE THE MOMENT YOU KEEP.</h2>
@@ -60,9 +60,9 @@
         </div>
         <p class="category-output" aria-live="polite"><strong id="nocturne-output">Late light / Discovery set</strong><span id="nocturne-copy">Saffron, pear skin and amber resin before the full bottle.</span></p>
         <div class="category-choices" role="group" aria-label="Choose a fragrance direction">
-          <button class="category-choice" type="button" data-choice="After rain / Discovery set" data-copy="Iris leaf, cedar steam and cool stone. Begin with a set of three small sprays." aria-pressed="false"><small>01 / QUIET</small><b>AFTER RAIN</b><span>Cool, clean, held close.</span></button>
-          <button class="category-choice" type="button" data-choice="Late light / Discovery set" data-copy="Saffron, pear skin and amber resin before the full bottle." aria-pressed="true"><small>02 / WARM</small><b>LATE LIGHT</b><span>Soft warmth with length.</span></button>
-          <button class="category-choice" type="button" data-choice="Black silk / Discovery set" data-copy="Black tea, rose absolute and clean musk for a deeper skin test." aria-pressed="false"><small>03 / DEEP</small><b>BLACK SILK</b><span>Dark, precise, lingering.</span></button>
+          <button class="category-choice" type="button" data-choice="After rain / Discovery set" data-copy="Iris leaf, cedar steam and cool stone. Begin with a set of three small sprays." data-image="../assets/nocturne-choice-after-rain.webp" data-alt="Cool Nocturne fragrance bottle on wet stone with iris" style="--choice-image:url('../assets/nocturne-choice-after-rain.webp')" aria-pressed="false"><span class="choice-preview" aria-hidden="true"></span><small>01 / QUIET</small><b>AFTER RAIN</b><span>Cool, clean, held close.</span></button>
+          <button class="category-choice" type="button" data-choice="Late light / Discovery set" data-copy="Saffron, pear skin and amber resin before the full bottle." data-image="../assets/nocturne-choice-late-light.webp" data-alt="Amber Nocturne fragrance bottle with pear and saffron" style="--choice-image:url('../assets/nocturne-choice-late-light.webp')" aria-pressed="true"><span class="choice-preview" aria-hidden="true"></span><small>02 / WARM</small><b>LATE LIGHT</b><span>Soft warmth with length.</span></button>
+          <button class="category-choice" type="button" data-choice="Black silk / Discovery set" data-copy="Black tea, rose absolute and clean musk for a deeper skin test." data-image="../assets/nocturne-choice-black-silk.webp" data-alt="Black Nocturne fragrance bottle with rose and tea" style="--choice-image:url('../assets/nocturne-choice-black-silk.webp')" aria-pressed="false"><span class="choice-preview" aria-hidden="true"></span><small>03 / DEEP</small><b>BLACK SILK</b><span>Dark, precise, lingering.</span></button>
         </div>
       </div>
     </section>
@@ -104,9 +104,12 @@
     </footer>
   </main>
   <script>
+    const categoryImage=document.querySelector('[data-choice-media]');
     document.querySelectorAll('[data-choice]').forEach((button)=>button.addEventListener('click',()=>{
       document.querySelectorAll('[data-choice]').forEach((item)=>item.setAttribute('aria-pressed','false'));
       button.setAttribute('aria-pressed','true');
+      categoryImage.src=button.dataset.image;
+      categoryImage.alt=button.dataset.alt;
       document.querySelector('#nocturne-output').textContent=button.dataset.choice;
       document.querySelector('#nocturne-copy').textContent=button.dataset.copy;
     }));

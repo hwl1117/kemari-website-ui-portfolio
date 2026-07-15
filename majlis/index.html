@@ -52,7 +52,7 @@
 
     <section class="category-showcase editorial-grid" id="reserve" aria-labelledby="majlis-category-title">
       <div class="category-frame">
-        <figure class="category-media"><img src="../assets/majlis-moments-01.webp" alt="Majlis dining room lit for evening service" loading="lazy"></figure>
+        <figure class="category-media"><img data-choice-media src="../assets/majlis-choice-dinner.webp" alt="Restaurant dinner table with composed dishes and candlelight" loading="lazy"></figure>
         <div class="category-copy">
           <p class="eyebrow">Reservation direction</p>
           <h2 id="majlis-category-title">CHOOSE THE EVENING BEFORE THE FORM.</h2>
@@ -60,9 +60,9 @@
         </div>
         <p class="category-output" aria-live="polite"><strong id="majlis-output">Thursday 18 / 20:00</strong><span id="majlis-copy">A table for two in the dining room, with menu and dietary context available before confirmation.</span></p>
         <div class="category-choices" role="group" aria-label="Choose a reservation time">
-          <button class="category-choice" type="button" data-choice="Thursday 18 / 18:30" data-copy="An early table for two, held around an aperitif and a longer menu introduction." aria-pressed="false"><small>01 / EARLY</small><b>18:30</b><span>Start before the room fills.</span></button>
-          <button class="category-choice" type="button" data-choice="Thursday 18 / 20:00" data-copy="A table for two in the dining room, with menu and dietary context available before confirmation." aria-pressed="true"><small>02 / DINNER</small><b>20:00</b><span>The core evening table.</span></button>
-          <button class="category-choice" type="button" data-choice="Thursday 18 / 22:00" data-copy="A later table held for dessert, slower conversation and an evening-led service." aria-pressed="false"><small>03 / LATE</small><b>22:00</b><span>Stay after the main room.</span></button>
+          <button class="category-choice" type="button" data-choice="Thursday 18 / 18:30" data-copy="An early table for two, held around an aperitif and a longer menu introduction." data-image="../assets/majlis-choice-early.webp" data-alt="Calm early restaurant table for two" style="--choice-image:url('../assets/majlis-choice-early.webp')" aria-pressed="false"><span class="choice-preview" aria-hidden="true"></span><small>01 / EARLY</small><b>18:30</b><span>Start before the room fills.</span></button>
+          <button class="category-choice" type="button" data-choice="Thursday 18 / 20:00" data-copy="A table for two in the dining room, with menu and dietary context available before confirmation." data-image="../assets/majlis-choice-dinner.webp" data-alt="Restaurant dinner table with composed dishes and candlelight" style="--choice-image:url('../assets/majlis-choice-dinner.webp')" aria-pressed="true"><span class="choice-preview" aria-hidden="true"></span><small>02 / DINNER</small><b>20:00</b><span>The core evening table.</span></button>
+          <button class="category-choice" type="button" data-choice="Thursday 18 / 22:00" data-copy="A later table held for dessert, slower conversation and an evening-led service." data-image="../assets/majlis-choice-late.webp" data-alt="Late restaurant dessert with brass tea service" style="--choice-image:url('../assets/majlis-choice-late.webp')" aria-pressed="false"><span class="choice-preview" aria-hidden="true"></span><small>03 / LATE</small><b>22:00</b><span>Stay after the main room.</span></button>
         </div>
       </div>
     </section>
@@ -104,9 +104,12 @@
     </footer>
   </main>
   <script>
+    const categoryImage=document.querySelector('[data-choice-media]');
     document.querySelectorAll('[data-choice]').forEach((button)=>button.addEventListener('click',()=>{
       document.querySelectorAll('[data-choice]').forEach((item)=>item.setAttribute('aria-pressed','false'));
       button.setAttribute('aria-pressed','true');
+      categoryImage.src=button.dataset.image;
+      categoryImage.alt=button.dataset.alt;
       document.querySelector('#majlis-output').textContent=button.dataset.choice;
       document.querySelector('#majlis-copy').textContent=button.dataset.copy;
     }));
