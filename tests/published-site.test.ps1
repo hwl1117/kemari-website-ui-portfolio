@@ -20,9 +20,10 @@ function Assert-NotContains {
 
 $requiredFiles = @(
   'index.html',
+  'nadwa\\index.html',
   'nocturne\\index.html',
-  'signal\\index.html',
-  'kinfolk\\index.html',
+  'roastery\\index.html',
+  'majlis\\index.html',
   'ui-audit\\index.html'
 )
 
@@ -36,7 +37,27 @@ foreach ($relativePath in $requiredFiles) {
 $entry = Get-Content -Raw (Join-Path $siteRoot 'index.html')
 Assert-Contains $entry 'Kemari Blakemore | Website UI Directions' 'portfolio title'
 Assert-Contains $entry './ui-audit/' 'root-relative UI audit route'
+Assert-Contains $entry 'High-end Arabic tableware' 'tableware sector'
+Assert-Contains $entry 'Fine fragrance' 'fragrance sector'
+Assert-Contains $entry 'Specialty coffee' 'coffee sector'
+Assert-Contains $entry 'Restaurant' 'restaurant sector'
 Assert-NotContains $entry 'hwl1117.github.io/kemari-sample-audit' 'legacy project link'
+
+$nadwa = Get-Content -Raw (Join-Path $siteRoot 'nadwa\\index.html')
+Assert-Contains $nadwa 'Corporate and wedding gifting' 'tableware gifting route'
+Assert-Contains $nadwa 'Build a table' 'tableware merchandising action'
+
+$nocturne = Get-Content -Raw (Join-Path $siteRoot 'nocturne\\index.html')
+Assert-Contains $nocturne 'Find your scent' 'fragrance discovery route'
+Assert-Contains $nocturne 'Discovery set' 'fragrance sample route'
+
+$roastery = Get-Content -Raw (Join-Path $siteRoot 'roastery\\index.html')
+Assert-Contains $roastery 'Choose your roast profile' 'coffee selection route'
+Assert-Contains $roastery 'Wholesale coffee' 'coffee wholesale route'
+
+$majlis = Get-Content -Raw (Join-Path $siteRoot 'majlis\\index.html')
+Assert-Contains $majlis 'Reserve a table' 'restaurant reservation route'
+Assert-Contains $majlis 'Private dining' 'restaurant events route'
 
 $audit = Get-Content -Raw (Join-Path $siteRoot 'ui-audit\\index.html')
 Assert-Contains $audit 'Website UI Audit | Kemari Blakemore' 'audit title'
@@ -63,5 +84,15 @@ foreach ($asset in $webpAssets) {
     throw "Published WebP asset exceeds 500 KiB: $($asset.Name)"
   }
 }
+
+$workflow = Get-ChildItem -Path (Split-Path -Parent $siteRoot) -File -Filter '41-*.md' | Select-Object -First 1
+if (-not $workflow) {
+  throw 'Missing four-sector WhatsApp workflow.'
+}
+
+$workflowText = Get-Content -Raw $workflow.FullName
+Assert-Contains $workflowText 'WhatsApp Business' 'WhatsApp channel policy'
+Assert-Contains $workflowText 'one first-touch channel' 'channel deduplication policy'
+Assert-Contains $workflowText 'explicit approval' 'outbound approval policy'
 
 Write-Host "Published-site checks passed for $($requiredFiles.Count) pages."
