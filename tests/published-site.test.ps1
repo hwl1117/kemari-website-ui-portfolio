@@ -51,21 +51,33 @@ $nadwa = Get-Content -Raw (Join-Path $siteRoot 'nadwa\\index.html')
 Assert-Contains $nadwa 'Corporate and wedding gifting' 'tableware gifting route'
 Assert-Contains $nadwa 'Build a table' 'tableware merchandising action'
 Assert-NotContains $nadwa 'href="../"' 'tableware route back to overview'
+Assert-Contains $nadwa 'case-rail' 'tableware editorial rail'
+Assert-Contains $nadwa 'editorial-grid' 'tableware grid layout'
+Assert-Contains $nadwa 'nadwa-graded.webp' 'tableware graded image'
 
 $nocturne = Get-Content -Raw (Join-Path $siteRoot 'nocturne\\index.html')
 Assert-Contains $nocturne 'Find your scent' 'fragrance discovery route'
 Assert-Contains $nocturne 'Discovery set' 'fragrance sample route'
 Assert-NotContains $nocturne 'href="../"' 'fragrance route back to overview'
+Assert-Contains $nocturne 'case-rail' 'fragrance editorial rail'
+Assert-Contains $nocturne 'editorial-grid' 'fragrance grid layout'
+Assert-Contains $nocturne 'nocturne-graded.webp' 'fragrance graded image'
 
 $roastery = Get-Content -Raw (Join-Path $siteRoot 'roastery\\index.html')
 Assert-Contains $roastery 'Choose your roast profile' 'coffee selection route'
 Assert-Contains $roastery 'Wholesale coffee' 'coffee wholesale route'
 Assert-NotContains $roastery 'href="../"' 'coffee route back to overview'
+Assert-Contains $roastery 'case-rail' 'coffee editorial rail'
+Assert-Contains $roastery 'editorial-grid' 'coffee grid layout'
+Assert-Contains $roastery 'roastery-graded.webp' 'coffee graded image'
 
 $majlis = Get-Content -Raw (Join-Path $siteRoot 'majlis\\index.html')
 Assert-Contains $majlis 'Reserve a table' 'restaurant reservation route'
 Assert-Contains $majlis 'Private dining' 'restaurant events route'
 Assert-NotContains $majlis 'href="../"' 'restaurant route back to overview'
+Assert-Contains $majlis 'case-rail' 'restaurant editorial rail'
+Assert-Contains $majlis 'editorial-grid' 'restaurant grid layout'
+Assert-Contains $majlis 'majlis-graded.webp' 'restaurant graded image'
 
 $audit = Get-Content -Raw (Join-Path $siteRoot 'ui-audit\\index.html')
 Assert-Contains $audit 'Website UI Audit | Kemari Blakemore' 'audit title'
@@ -90,6 +102,13 @@ if ($webpAssets.Count -lt 6) {
 foreach ($asset in $webpAssets) {
   if ($asset.Length -gt 500KB) {
     throw "Published WebP asset exceeds 500 KiB: $($asset.Name)"
+  }
+}
+
+$gradedAssets = @('nadwa-graded.webp', 'nocturne-graded.webp', 'roastery-graded.webp', 'majlis-graded.webp')
+foreach ($assetName in $gradedAssets) {
+  if (-not (Test-Path (Join-Path $siteRoot "assets\\$assetName"))) {
+    throw "Missing editorially graded asset: $assetName"
   }
 }
 
