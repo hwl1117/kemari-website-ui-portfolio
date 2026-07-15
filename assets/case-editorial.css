@@ -11,7 +11,22 @@
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--case-bg);color:var(--case-ink);font-family:Arial,Helvetica,sans-serif;line-height:1.45}
+body{
+  margin:0;
+  color:var(--case-ink);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.45;
+  background-color:#04150f;
+  background-image:
+    linear-gradient(180deg,rgba(1,11,8,.48),rgba(1,11,8,.65)),
+    radial-gradient(ellipse 62% 44% at 9% 42%,rgba(39,112,81,.27),transparent 73%),
+    radial-gradient(ellipse 56% 39% at 83% 68%,rgba(35,92,68,.18),transparent 76%),
+    url("editorial-emerald-background.webp");
+  background-position:center,center,center,center top;
+  background-repeat:no-repeat,no-repeat,no-repeat,no-repeat;
+  background-size:auto,auto,auto,cover;
+  background-attachment:fixed,fixed,fixed,fixed;
+}
 button,input,textarea{font:inherit}
 a{color:inherit}
 figure{margin:0}
@@ -41,7 +56,7 @@ figure{margin:0}
   min-height:100vh;
   margin-left:100px;
   overflow:hidden;
-  background-color:var(--case-bg);
+  background-color:rgba(3,20,14,.15);
   background-image:
     repeating-linear-gradient(90deg,transparent 0,transparent 259px,var(--case-faint) 260px),
     repeating-linear-gradient(0deg,transparent 0,transparent 259px,var(--case-faint) 260px);

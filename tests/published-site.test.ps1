@@ -119,7 +119,7 @@ if ($pngs) {
 }
 
 $webpAssets = Get-ChildItem -Path (Join-Path $siteRoot 'assets') -File -Filter '*.webp'
-if ($webpAssets.Count -lt 6) {
+if ($webpAssets.Count -lt 9) {
   throw 'The public package is missing optimized WebP assets.'
 }
 
@@ -135,6 +135,16 @@ foreach ($assetName in $gradedAssets) {
     throw "Missing editorially graded asset: $assetName"
   }
 }
+
+$editorialBackground = Join-Path $siteRoot 'assets\\editorial-emerald-background.webp'
+if (-not (Test-Path $editorialBackground)) {
+  throw 'Missing full-page editorial background asset.'
+}
+
+$caseCss = Get-Content -Raw (Join-Path $siteRoot 'assets\\case-editorial.css')
+Assert-Contains $caseCss 'editorial-emerald-background.webp' 'reference-style full-page background texture'
+Assert-Contains $caseCss 'background-attachment:fixed' 'persistent background layer'
+Assert-Contains $caseCss 'radial-gradient' 'ambient green lighting layer'
 
 $workflow = Get-ChildItem -Path (Split-Path -Parent $siteRoot) -File -Filter '41-*.md' | Select-Object -First 1
 if (-not $workflow) {
