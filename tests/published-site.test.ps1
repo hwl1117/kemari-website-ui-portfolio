@@ -222,11 +222,30 @@ if (-not (Test-Path $editorialBackground)) {
 }
 
 $caseCss = Get-Content -Raw (Join-Path $siteRoot 'assets\\case-editorial.css')
-Assert-Contains $caseCss 'editorial-emerald-structured.webp' 'sharp reference-style full-page background texture'
-Assert-Contains $caseCss 'background-attachment:scroll' 'scrolling page background layer'
-Assert-NotContains $caseCss 'background-attachment:fixed' 'fixed viewport background layer'
-Assert-Contains $caseCss 'radial-gradient' 'ambient green lighting layer'
 Assert-Contains $caseCss '.choice-preview' 'clickable choice image previews'
+Assert-Contains $caseCss '.mesh-drift-canvas' 'WebGL mesh drift canvas layer'
+Assert-NotContains $caseCss 'editorial-emerald-structured.webp' 'retired static page background'
+
+$meshScriptPath = Join-Path $siteRoot 'assets\\mesh-drift-background.js'
+$meshFragmentPath = Join-Path $siteRoot 'assets\\mesh-drift.frag'
+if (-not (Test-Path $meshScriptPath) -or -not (Test-Path $meshFragmentPath)) {
+  throw 'Missing Mesh drift WebGL background assets.'
+}
+
+$meshScript = Get-Content -Raw $meshScriptPath
+$meshFragment = Get-Content -Raw $meshFragmentPath
+Assert-Contains $meshScript "getContext('webgl'" 'WebGL1 context'
+Assert-Contains $meshScript 'Math.min(window.devicePixelRatio || 1, 2)' 'DPR cap'
+Assert-Contains $meshScript 'document.hidden' 'hidden-tab animation pause'
+Assert-Contains $meshScript 'ResizeObserver' 'viewport-aware canvas sizing'
+Assert-Contains $meshScript '0.012, 0.071, 0.055' 'Mesh drift low color uniform'
+Assert-Contains $meshScript '0.957, 1.000, 0.780' 'Mesh drift high color uniform'
+Assert-Contains $meshFragment 'uniform vec3 u_colors[8];' 'Mesh drift color palette uniform'
+Assert-Contains $meshFragment 'void main()' 'Mesh drift shader entry point'
+
+foreach ($caseContent in @($nadwa, $nocturne, $roastery, $majlis)) {
+  Assert-Contains $caseContent 'mesh-drift-background.js' 'shared WebGL background loader'
+}
 
 $workflow = Get-ChildItem -Path (Split-Path -Parent $siteRoot) -File -Filter '41-*.md' | Select-Object -First 1
 if (-not $workflow) {
