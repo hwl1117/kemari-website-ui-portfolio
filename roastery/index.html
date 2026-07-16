@@ -6,19 +6,26 @@
   <meta name="description" content="Hinterland Roastery: a private UI direction for specialty coffee.">
   <title>Hinterland Roastery | Private UI Direction</title>
   <link rel="preload" as="image" href="../assets/roastery-graded.webp" fetchpriority="high">
-  <link rel="stylesheet" href="../assets/case-editorial.css">
+  <link rel="stylesheet" href="../assets/case-editorial.css?v=20260716-readability">
   <style>:root{--case-bg:#0b211b;--case-panel:#27473a;--case-accent:#c59a5f;--case-soft:#d9ded2}</style>
 </head>
 <body>
   <aside class="case-rail" aria-label="Hinterland direction">
     <div class="rail-brand">KEMARI<small>PRIVATE DIRECTION</small></div>
     <div class="rail-mark" aria-hidden="true">H</div>
-    <div class="rail-social" aria-hidden="true"><span>03</span><span>ROAST</span><span>BREW</span></div>
+    <nav class="rail-navigation" aria-label="Page sections" data-rail-navigation>
+      <a href="#roastery-intro" aria-current="page"><span>01</span><b>INTRO</b></a>
+      <a href="#roastery-story"><span>02</span><b>STORY</b></a>
+      <a href="#roast-profile"><span>03</span><b>ROASTS</b></a>
+      <a href="#roastery-path"><span>04</span><b>ROUTE</b></a>
+      <a href="#roastery-contact"><span>05</span><b>CONTACT</b></a>
+    </nav>
     <div class="rail-scroll">SCROLL DOWN</div>
   </aside>
 
-  <main class="case-main">
-    <section class="reference-hero editorial-grid" aria-labelledby="roastery-title">
+  <main class="case-main case-main--grainient">
+    <div class="grainient-background" data-grainient-background aria-hidden="true"></div>
+    <section class="reference-hero editorial-grid" id="roastery-intro" data-rail-section aria-labelledby="roastery-title">
       <figure class="hero-stage"><img src="../assets/roastery-graded.webp" alt="Specialty coffee brewing tools in deep forest-green light" fetchpriority="high"></figure>
       <div class="hero-copy">
         <p class="eyebrow">Hinterland / specialty coffee</p>
@@ -26,11 +33,11 @@
         <p>Specialty coffee customers care about detail, but they decide through taste, brew method and the promise of a better daily cup.</p>
         <a class="text-link" href="#roast-profile">Choose your roast profile <span aria-hidden="true">&rarr;</span></a>
       </div>
-      <div class="hero-rule"><p>Taste-led entry points make origin depth, delivery cadence and a wholesale service route easier to discover at the right moment.</p></div>
+      <div class="hero-rule"><p>Taste-led entry points make origin details, delivery timing and wholesale options easier to discover at the right moment.</p></div>
       <span class="hero-index">03 / 04</span>
     </section>
 
-    <section class="brand-feature editorial-grid" aria-labelledby="roastery-feature-title">
+    <section class="brand-feature editorial-grid" id="roastery-story" data-rail-section aria-labelledby="roastery-feature-title">
       <div class="section-inner">
         <div class="brand-visuals" aria-hidden="true">
           <figure class="visual-main"><img src="../assets/roastery-coffee.webp" alt="" loading="lazy"></figure>
@@ -39,7 +46,7 @@
         <div class="brand-copy">
           <p class="eyebrow">Brand feature</p>
           <h2 id="roastery-feature-title">TRANSLATE DETAIL INTO A CUP SOMEONE CAN CHOOSE.</h2>
-          <p>The page opens through taste and brew ritual. Origin, producer and process deepen the decision after a visitor already knows what they want to drink.</p>
+          <p>The page opens through taste and brew ritual. Origin, producer and processing details deepen the decision after a visitor already knows what they want to drink.</p>
           <div class="feature-icons" aria-label="Hinterland commerce features">
             <div><b>01</b><span>Roast profile</span></div>
             <div><b>02</b><span>Brew method</span></div>
@@ -50,46 +57,48 @@
       </div>
     </section>
 
-    <section class="category-showcase editorial-grid" id="roast-profile" aria-labelledby="roastery-category-title">
+    <section class="category-showcase editorial-grid" id="roast-profile" data-rail-section aria-labelledby="roastery-category-title">
       <div class="category-frame">
         <figure class="category-media"><img data-choice-media src="../assets/roastery-choice-sweet-round.webp" alt="Colombian daily cup with roasted beans and plum" loading="lazy"></figure>
         <div class="category-copy">
           <p class="eyebrow">Roast profile</p>
           <h2 id="roastery-category-title">CHOOSE THE CUP BEFORE THE COUNTRY.</h2>
-          <p>Each route translates the choice into a useful taste, brew method and a reason to return for another bag.</p>
+          <p>Each route connects the choice to a clear taste profile, brew method and reason to return for another bag.</p>
         </div>
-        <p class="category-output" aria-live="polite"><strong id="roastery-output">Sweet and round / Colombia</strong><span id="roastery-copy">Plum, caramel and cacao for a repeated daily cup across filter and milk.</span></p>
+        <p class="category-output" aria-live="polite"><strong id="roastery-output">Sweet and round / Colombia</strong><span id="roastery-copy">Plum, caramel and cacao for a daily cup you can enjoy as filter coffee or with milk.</span></p>
         <div class="category-choices" role="group" aria-label="Choose a roast profile">
           <button class="category-choice" type="button" data-choice="Clean and bright / Kenya" data-copy="Blackcurrant, white florals and brown sugar, suggested for V60 and batch brew." data-image="../assets/roastery-choice-clean-bright.webp" data-alt="V60 filter coffee with florals and blackcurrants" style="--choice-image:url('../assets/roastery-choice-clean-bright.webp')" aria-pressed="false"><span class="choice-preview" aria-hidden="true"></span><small>01 / FILTER</small><b>CLEAN AND BRIGHT</b><span>For clarity and length.</span></button>
-          <button class="category-choice" type="button" data-choice="Sweet and round / Colombia" data-copy="Plum, caramel and cacao for a repeated daily cup across filter and milk." data-image="../assets/roastery-choice-sweet-round.webp" data-alt="Colombian daily cup with roasted beans and plum" style="--choice-image:url('../assets/roastery-choice-sweet-round.webp')" aria-pressed="true"><span class="choice-preview" aria-hidden="true"></span><small>02 / DAILY</small><b>SWEET AND ROUND</b><span>For an easy repeat cup.</span></button>
+          <button class="category-choice" type="button" data-choice="Sweet and round / Colombia" data-copy="Plum, caramel and cacao for a daily cup you can enjoy as filter coffee or with milk." data-image="../assets/roastery-choice-sweet-round.webp" data-alt="Colombian daily cup with roasted beans and plum" style="--choice-image:url('../assets/roastery-choice-sweet-round.webp')" aria-pressed="true"><span class="choice-preview" aria-hidden="true"></span><small>02 / DAILY</small><b>SWEET AND ROUND</b><span>For an easy everyday cup.</span></button>
           <button class="category-choice" type="button" data-choice="Deep and structured / Brazil" data-copy="Dark chocolate, roasted almond and dried cherry, designed to hold up in espresso and milk." data-image="../assets/roastery-choice-deep-structured.webp" data-alt="Dark espresso cup with chocolate and roasted almond" style="--choice-image:url('../assets/roastery-choice-deep-structured.webp')" aria-pressed="false"><span class="choice-preview" aria-hidden="true"></span><small>03 / ESPRESSO</small><b>DEEP AND STRUCTURED</b><span>For body and milk.</span></button>
         </div>
       </div>
     </section>
 
-    <section class="service-canvas editorial-grid" aria-labelledby="roastery-service-title">
+    <section class="service-canvas editorial-grid" id="roastery-path" data-rail-section aria-labelledby="roastery-service-title">
       <div class="service-frame">
-        <figure class="service-photo"><img src="../assets/roastery-moments-02.webp" alt="Slow pour-over coffee over a ceramic dripper" loading="lazy"></figure>
+        <div class="service-visual-column">
+          <figure class="service-photo"><img data-process-media src="../assets/roastery-moments-01.webp" alt="Specialty coffee bag, fresh beans and a prepared daily cup" loading="lazy"></figure>
+          <p class="service-status" id="roastery-status" aria-live="polite">Choose a taste profile before the origin details.</p>
+        </div>
         <div class="service-panel">
           <span class="service-title" aria-hidden="true">SERVICE PROCESS</span>
           <span class="service-page">02 / 06</span>
           <div class="service-copy">
             <p class="eyebrow">Service route</p>
             <h2 id="roastery-service-title">ONE BAG BECOMES A REPEATABLE COFFEE RHYTHM.</h2>
-            <p>Subscription holds profile, cadence and roaster rotation in one relationship. Wholesale coffee begins with service, not a retail checkout.</p>
+            <p>A subscription keeps your taste profile and delivery cadence in one simple plan, with seasonal coffees introduced at the right pace. Wholesale coffee begins with service, not a retail checkout.</p>
             <div class="process-track" role="group" aria-label="Hinterland customer process">
-              <button class="process-step" type="button" data-step="Choose a profile: taste before jargon." aria-pressed="false"><small>01</small><b>CHOOSE A PROFILE</b></button>
-              <button class="process-step" type="button" data-step="Select a bag with origin context." aria-pressed="true"><small>02</small><b>SELECT A BAG</b></button>
-              <button class="process-step" type="button" data-step="Set a delivery rhythm: weekly or fortnightly." aria-pressed="false"><small>03</small><b>SET DELIVERY</b></button>
-              <button class="process-step" type="button" data-step="Open a Wholesale coffee brief for service and volume." aria-pressed="false"><small>04</small><b>WHOLESALE COFFEE</b></button>
+              <button class="process-step" type="button" data-step="Choose a taste profile before the origin details and roast terminology." data-process-image="../assets/roastery-moments-01.webp" data-process-alt="Specialty coffee bag, fresh beans and a prepared daily cup" style="--process-image:url('../assets/roastery-moments-01.webp')" aria-pressed="true"><span class="process-preview" aria-hidden="true"></span><small>01</small><b>CHOOSE A PROFILE</b></button>
+              <button class="process-step" type="button" data-step="Select a bag with clear tasting notes, brew guidance and origin context." data-process-image="../assets/roastery-moments-02.webp" data-process-alt="Slow pour-over coffee over a ceramic dripper" style="--process-image:url('../assets/roastery-moments-02.webp')" aria-pressed="false"><span class="process-preview" aria-hidden="true"></span><small>02</small><b>SELECT A BAG</b></button>
+              <button class="process-step" type="button" data-step="Set a delivery rhythm that keeps your preferred coffee arriving fresh." data-process-image="../assets/roastery-moments-03.webp" data-process-alt="Specialty coffee bags and a ceramic cup ready for repeat delivery" style="--process-image:url('../assets/roastery-moments-03.webp')" aria-pressed="false"><span class="process-preview" aria-hidden="true"></span><small>03</small><b>SET DELIVERY</b></button>
+              <button class="process-step" type="button" data-step="Start a wholesale conversation with volume, service rhythm and equipment needs." data-process-image="../assets/roastery-moments-04.webp" data-process-alt="Hinterland evening coffee counter prepared for wholesale service" style="--process-image:url('../assets/roastery-moments-04.webp')" aria-pressed="false"><span class="process-preview" aria-hidden="true"></span><small>04</small><b>WHOLESALE COFFEE</b></button>
             </div>
           </div>
-          <p class="service-status" id="roastery-status" aria-live="polite">Select a bag with origin context.</p>
         </div>
       </div>
     </section>
 
-    <footer class="micro-footer">
+    <footer class="micro-footer" id="roastery-contact" data-rail-section>
       <div class="footer-tiles">
         <section class="footer-tile">
           <img src="../assets/roastery-moments-03.webp" alt="Unbranded specialty coffee bags and a ceramic cup" loading="lazy">
@@ -105,6 +114,7 @@
   </main>
   <script>
     const categoryImage=document.querySelector('[data-choice-media]');
+    const processImage=document.querySelector('[data-process-media]');
     document.querySelectorAll('[data-choice]').forEach((button)=>button.addEventListener('click',()=>{
       document.querySelectorAll('[data-choice]').forEach((item)=>item.setAttribute('aria-pressed','false'));
       button.setAttribute('aria-pressed','true');
@@ -116,8 +126,12 @@
     document.querySelectorAll('[data-step]').forEach((button)=>button.addEventListener('click',()=>{
       document.querySelectorAll('[data-step]').forEach((item)=>item.setAttribute('aria-pressed','false'));
       button.setAttribute('aria-pressed','true');
+      processImage.src=button.dataset.processImage;
+      processImage.alt=button.dataset.processAlt;
       document.querySelector('#roastery-status').textContent=button.dataset.step;
     }));
   </script>
+  <script src="../assets/case-rail-navigation.js" defer></script>
+  <script src="../assets/grainient-background.js" defer></script>
 </body>
 </html>

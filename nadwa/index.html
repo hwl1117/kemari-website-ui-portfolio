@@ -6,31 +6,38 @@
   <meta name="description" content="Nadwa Objects: a private UI direction for premium Arabic tableware.">
   <title>Nadwa Objects | Private UI Direction</title>
   <link rel="preload" as="image" href="../assets/nadwa-graded.webp" fetchpriority="high">
-  <link rel="stylesheet" href="../assets/case-editorial.css">
+  <link rel="stylesheet" href="../assets/case-editorial.css?v=20260716-readability">
   <style>:root{--case-bg:#08261d;--case-panel:#164236;--case-accent:#caa66a;--case-soft:#e7dfd0}</style>
 </head>
 <body>
   <aside class="case-rail" aria-label="Nadwa direction">
     <div class="rail-brand">KEMARI<small>PRIVATE DIRECTION</small></div>
     <div class="rail-mark" aria-hidden="true">N</div>
-    <div class="rail-social" aria-hidden="true"><span>01</span><span>HOST</span><span>GIFT</span></div>
+    <nav class="rail-navigation" aria-label="Page sections" data-rail-navigation>
+      <a href="#nadwa-intro" aria-current="page"><span>01</span><b>INTRO</b></a>
+      <a href="#nadwa-story"><span>02</span><b>STORY</b></a>
+      <a href="#table-builder"><span>03</span><b>SETS</b></a>
+      <a href="#nadwa-path"><span>04</span><b>PATH</b></a>
+      <a href="#nadwa-contact"><span>05</span><b>CONTACT</b></a>
+    </nav>
     <div class="rail-scroll">SCROLL DOWN</div>
   </aside>
 
-  <main class="case-main">
-    <section class="reference-hero editorial-grid" aria-labelledby="nadwa-title">
+  <main class="case-main case-main--grainient">
+    <div class="grainient-background" data-grainient-background aria-hidden="true"></div>
+    <section class="reference-hero editorial-grid" id="nadwa-intro" data-rail-section aria-labelledby="nadwa-title">
       <figure class="hero-stage"><img src="../assets/nadwa-graded.webp" alt="A refined Arabic tableware setting with porcelain and brass" fetchpriority="high"></figure>
       <div class="hero-copy">
         <p class="eyebrow">Nadwa Objects / Arabic tableware</p>
-        <h1 id="nadwa-title">MAKE THE TABLE THE INVITATION.</h1>
-        <p>A premium tableware site should begin with the occasion, then make hosting, gifting and quantity feel clear enough to act on.</p>
-        <a class="text-link" href="#table-builder">Build a table <span aria-hidden="true">&rarr;</span></a>
+        <h1 id="nadwa-title">SET THE OCCASION.</h1>
+        <p>A premium tableware site should begin with the occasion, then make hosting, gifting and quantities clear enough to act on.</p>
+        <a class="text-link" href="#table-builder">Explore tableware sets <span aria-hidden="true">&rarr;</span></a>
       </div>
-      <div class="hero-rule"><p>One visual route carries a personal setting, a hosted dinner and a larger gift order without turning the page into a catalogue wall.</p></div>
+        <div class="hero-rule"><p>One visual journey supports a personal place setting, a hosted dinner and a larger gift order without turning the page into a catalogue.</p></div>
       <span class="hero-index">01 / 04</span>
     </section>
 
-    <section class="brand-feature editorial-grid" aria-labelledby="nadwa-feature-title">
+    <section class="brand-feature editorial-grid" id="nadwa-story" data-rail-section aria-labelledby="nadwa-feature-title">
       <div class="section-inner">
         <div class="brand-visuals" aria-hidden="true">
           <figure class="visual-main"><img src="../assets/nadwa-tableware.webp" alt="" loading="lazy"></figure>
@@ -39,7 +46,7 @@
         <div class="brand-copy">
           <p class="eyebrow">Brand feature</p>
           <h2 id="nadwa-feature-title">HOSTING BECOMES A SIMPLE DECISION.</h2>
-          <p>Instead of making customers compare individual plates first, the experience names the reason for the table and gathers the pieces, delivery and service detail around it.</p>
+          <p>Instead of asking customers to compare individual plates first, the experience starts with the occasion and brings together place settings, serveware, delivery and service details around it.</p>
           <div class="feature-icons" aria-label="Nadwa commerce features">
             <div><b>01</b><span>Complete settings</span></div>
             <div><b>02</b><span>Gift message</span></div>
@@ -50,46 +57,48 @@
       </div>
     </section>
 
-    <section class="category-showcase editorial-grid" id="table-builder" aria-labelledby="nadwa-category-title">
+    <section class="category-showcase editorial-grid" id="table-builder" data-rail-section aria-labelledby="nadwa-category-title">
       <div class="category-frame">
         <figure class="category-media"><img data-choice-media src="../assets/nadwa-choice-hosting.webp" alt="Nadwa hosting table with porcelain serveware and candles" loading="lazy"></figure>
         <div class="category-copy">
-          <p class="eyebrow">Table builder</p>
-          <h2 id="nadwa-category-title">A TABLE HAS A REASON.</h2>
-          <p>Selecting the intent changes the set, quantity and the next conversation without leaving the visual experience.</p>
+          <p class="eyebrow">Set finder</p>
+          <h2 id="nadwa-category-title">A SET FOR EVERY OCCASION.</h2>
+          <p>Selecting an occasion changes the place settings, serveware and next step without leaving the visual experience.</p>
         </div>
-        <p class="category-output" aria-live="polite"><strong id="nadwa-output">Hosting table / AED 2,380</strong><span id="nadwa-copy">Eight settings, shared serveware and delivery context held in one purchase route.</span></p>
-        <div class="category-choices" role="group" aria-label="Choose a table occasion">
-          <button class="category-choice" type="button" data-choice="Home table / AED 1,240" data-copy="Four place settings create a complete everyday beginning without a piece-by-piece decision." data-image="../assets/nadwa-choice-home.webp" data-alt="Everyday Nadwa porcelain table for two with dates and linen" style="--choice-image:url('../assets/nadwa-choice-home.webp')" aria-pressed="false"><span class="choice-preview" aria-hidden="true"></span><small>01 / HOME</small><b>HOME TABLE</b><span>One complete daily setting.</span></button>
-          <button class="category-choice" type="button" data-choice="Hosting table / AED 2,380" data-copy="Eight settings, shared serveware and delivery context held in one purchase route." data-image="../assets/nadwa-choice-hosting.webp" data-alt="Nadwa hosting table with porcelain serveware and candles" style="--choice-image:url('../assets/nadwa-choice-hosting.webp')" aria-pressed="true"><span class="choice-preview" aria-hidden="true"></span><small>02 / HOSTING</small><b>HOSTING TABLE</b><span>Prepared for a longer dinner.</span></button>
-          <button class="category-choice" type="button" data-choice="Wedding gift / AED 1,680" data-copy="A boxed setting, personal note and delivery timing turn a gift into a route with care." data-image="../assets/nadwa-choice-gifting.webp" data-alt="Nadwa wedding gift box with porcelain and olive ribbon" style="--choice-image:url('../assets/nadwa-choice-gifting.webp')" aria-pressed="false"><span class="choice-preview" aria-hidden="true"></span><small>03 / GIFTING</small><b>WEDDING GIFT</b><span>One considered beginning.</span></button>
+        <p class="category-output" aria-live="polite"><strong id="nadwa-output">Hosting collection / AED 2,380</strong><span id="nadwa-copy">Eight place settings, shared serveware and a clear delivery plan in a single purchase flow.</span></p>
+        <div class="category-choices" role="group" aria-label="Choose a tableware occasion">
+          <button class="category-choice" type="button" data-choice="Everyday set / AED 1,240" data-copy="Four place settings create a complete everyday table without making customers choose piece by piece." data-image="../assets/nadwa-choice-home.webp" data-alt="Everyday Nadwa porcelain place setting for two with dates and linen" style="--choice-image:url('../assets/nadwa-choice-home.webp')" aria-pressed="false"><span class="choice-preview" aria-hidden="true"></span><small>01 / EVERYDAY</small><b>EVERYDAY SET</b><span>A complete everyday table.</span></button>
+          <button class="category-choice" type="button" data-choice="Hosting collection / AED 2,380" data-copy="Eight place settings, shared serveware and a clear delivery plan in a single purchase flow." data-image="../assets/nadwa-choice-hosting.webp" data-alt="Nadwa hosting place settings with porcelain serveware and candles" style="--choice-image:url('../assets/nadwa-choice-hosting.webp')" aria-pressed="true"><span class="choice-preview" aria-hidden="true"></span><small>02 / HOSTING</small><b>HOSTING COLLECTION</b><span>Prepared for a longer dinner.</span></button>
+          <button class="category-choice" type="button" data-choice="Wedding gift set / AED 1,680" data-copy="A boxed set, a personal note and scheduled delivery make gifting feel considered from start to finish." data-image="../assets/nadwa-choice-gifting.webp" data-alt="Nadwa wedding gift set with porcelain and olive ribbon" style="--choice-image:url('../assets/nadwa-choice-gifting.webp')" aria-pressed="false"><span class="choice-preview" aria-hidden="true"></span><small>03 / GIFTING</small><b>WEDDING GIFT SET</b><span>A thoughtful beginning for a new home.</span></button>
         </div>
       </div>
     </section>
 
-    <section class="service-canvas editorial-grid" aria-labelledby="nadwa-service-title">
+    <section class="service-canvas editorial-grid" id="nadwa-path" data-rail-section aria-labelledby="nadwa-service-title">
       <div class="service-frame">
-        <figure class="service-photo"><img src="../assets/nadwa-moments-02.webp" alt="Forest-green presentation box and porcelain cup for a Nadwa gift" loading="lazy"></figure>
+        <div class="service-visual-column">
+          <figure class="service-photo"><img data-process-media src="../assets/nadwa-process-setting.webp" alt="Ivory porcelain place setting with dates, olive linen and brass spoon" loading="lazy"></figure>
+          <p class="service-status" id="nadwa-status" aria-live="polite">Choose the occasion: everyday, hosting or gifting.</p>
+        </div>
         <div class="service-panel">
           <span class="service-title" aria-hidden="true">SERVICE PROCESS</span>
           <span class="service-page">02 / 06</span>
           <div class="service-copy">
             <p class="eyebrow">Commerce route</p>
-            <h2 id="nadwa-service-title">ONE QUIET PATH FROM TABLE TO GIFT.</h2>
-            <p>Every step is visible enough to buy personally and structured enough to start a larger order conversation.</p>
+            <h2 id="nadwa-service-title">FROM ONE OCCASION TO A LASTING COLLECTION.</h2>
+            <p>Each step makes the next decision clear: choose the occasion, compose the pieces, arrange delivery, then return when the collection needs to grow.</p>
             <div class="process-track" role="group" aria-label="Nadwa customer process">
-              <button class="process-step" type="button" data-step="Find a setting: home or hosting." aria-pressed="false"><small>01</small><b>FIND A SETTING</b></button>
-              <button class="process-step" type="button" data-step="Build the table: pieces and quantity." aria-pressed="true"><small>02</small><b>BUILD THE TABLE</b></button>
-              <button class="process-step" type="button" data-step="Confirm the occasion: note and delivery." aria-pressed="false"><small>03</small><b>CONFIRM THE EVENT</b></button>
-              <button class="process-step" type="button" data-step="Return for a replacement or a new setting." aria-pressed="false"><small>04</small><b>RETURN TO NADWA</b></button>
+              <button class="process-step" type="button" data-step="Choose the occasion: everyday, hosting or gifting." data-process-image="../assets/nadwa-process-setting.webp" data-process-alt="Ivory porcelain place setting with dates, olive linen and brass spoon" style="--process-image:url('../assets/nadwa-process-setting.webp')" aria-pressed="true"><span class="process-preview" aria-hidden="true"></span><small>01</small><b>CHOOSE THE OCCASION</b></button>
+              <button class="process-step" type="button" data-step="Compose the set: place settings, serveware and quantity for the people you are welcoming." data-process-image="../assets/nadwa-process-hosting.webp" data-process-alt="Hosted dinner with ivory porcelain, olive linen and brass candle holders" style="--process-image:url('../assets/nadwa-process-hosting.webp')" aria-pressed="false"><span class="process-preview" aria-hidden="true"></span><small>02</small><b>COMPOSE THE SET</b></button>
+              <button class="process-step" type="button" data-step="Plan the arrival: confirm the occasion, personal note and delivery timing." data-process-image="../assets/nadwa-process-gifting.webp" data-process-alt="Deep-green tableware gift box with bronze ribbon and ivory porcelain cup" style="--process-image:url('../assets/nadwa-process-gifting.webp')" aria-pressed="false"><span class="process-preview" aria-hidden="true"></span><small>03</small><b>PLAN THE ARRIVAL</b></button>
+              <button class="process-step" type="button" data-step="Continue the collection: reorder pieces, replace essentials or begin the next occasion." data-process-image="../assets/nadwa-process-collection.webp" data-process-alt="Open deep-green box with nested ivory porcelain bowls for collection care" style="--process-image:url('../assets/nadwa-process-collection.webp')" aria-pressed="false"><span class="process-preview" aria-hidden="true"></span><small>04</small><b>CONTINUE THE COLLECTION</b></button>
             </div>
           </div>
-          <p class="service-status" id="nadwa-status" aria-live="polite">Build the table: pieces and quantity.</p>
         </div>
       </div>
     </section>
 
-    <footer class="micro-footer">
+    <footer class="micro-footer" id="nadwa-contact" data-rail-section>
       <div class="footer-tiles">
         <section class="footer-tile">
           <img src="../assets/nadwa-moments-03.webp" alt="Candlelit tableware setting for a group dinner" loading="lazy">
@@ -97,10 +106,10 @@
         </section>
         <section class="footer-tile">
           <img src="../assets/nadwa-moments-04.webp" alt="Brass coffee pot and ceramic serving bowl" loading="lazy">
-          <div class="footer-tile-copy"><div><p class="eyebrow">Nadwa Objects</p><h2>QUIET COMMERCE FOR A SIGNIFICANT TABLE.</h2></div><p>Independent concept UI work.</p></div>
+          <div class="footer-tile-copy"><div><p class="eyebrow">Nadwa Objects</p><h2>TABLEWARE FOR MEANINGFUL OCCASIONS.</h2></div><p>Independent concept UI work.</p></div>
         </section>
       </div>
-      <div class="footer-meta"><div><strong>KEMARI BLAKEMORE</strong>Website UI Designer</div><div><strong>EMAIL</strong><a href="mailto:kemariblakemore734@gmail.com">kemariblakemore734@gmail.com</a></div><div><strong>CONCEPT FOCUS</strong>Hosting, gifting, considered purchase</div><div class="footer-social"><a href="https://wa.me/8618025545090">WhatsApp</a><a href="mailto:kemariblakemore734@gmail.com">Email</a></div></div>
+      <div class="footer-meta"><div><strong>KEMARI BLAKEMORE</strong>Website UI Designer</div><div><strong>EMAIL</strong><a href="mailto:kemariblakemore734@gmail.com">kemariblakemore734@gmail.com</a></div><div><strong>CONCEPT FOCUS</strong>Hosting, gifting, repeat purchase</div><div class="footer-social"><a href="https://wa.me/8618025545090">WhatsApp</a><a href="mailto:kemariblakemore734@gmail.com">Email</a></div></div>
     </footer>
   </main>
   <script>
@@ -113,11 +122,16 @@
       document.querySelector('#nadwa-output').textContent=button.dataset.choice;
       document.querySelector('#nadwa-copy').textContent=button.dataset.copy;
     }));
+    const processImage=document.querySelector('[data-process-media]');
     document.querySelectorAll('[data-step]').forEach((button)=>button.addEventListener('click',()=>{
       document.querySelectorAll('[data-step]').forEach((item)=>item.setAttribute('aria-pressed','false'));
       button.setAttribute('aria-pressed','true');
+      processImage.src=button.dataset.processImage;
+      processImage.alt=button.dataset.processAlt;
       document.querySelector('#nadwa-status').textContent=button.dataset.step;
     }));
   </script>
+  <script src="../assets/case-rail-navigation.js" defer></script>
+  <script src="../assets/grainient-background.js" defer></script>
 </body>
 </html>
